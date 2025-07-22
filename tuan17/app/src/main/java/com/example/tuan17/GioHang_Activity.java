@@ -170,11 +170,14 @@ public class GioHang_Activity extends AppCompatActivity {
         tvTongTien.setText(tongTien);
 
         btnLuu.setOnClickListener(v -> {
-            String tenKh = edtTenKh.getText().toString().trim();
+            // Lấy username đăng nhập từ SharedPreferences
+            SharedPreferences sharedPre = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+            String tenKh = sharedPre.getString("tendn", null); // Username đăng nhập
+            String tenNguoiNhan = edtTenKh.getText().toString().trim(); // Tên người nhận
             String diaChi = edtDiaChi.getText().toString().trim();
             String sdt = edtSdt.getText().toString().trim();
 
-            if (tenKh.isEmpty() || diaChi.isEmpty() || sdt.isEmpty()) {
+            if (tenKh == null || diaChi.isEmpty() || sdt.isEmpty() || tenNguoiNhan.isEmpty()) {
                 Toast.makeText(this, "Vui lòng điền đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
             } else {
                 float tongThanhToan;
@@ -198,6 +201,8 @@ public class GioHang_Activity extends AppCompatActivity {
 
                             // Gọi phương thức addOrderDetails
                             orderManager.addOrderDetails((int) orderId, masp, soluong, dongia, anhByteArray);
+                            // Trừ số lượng sản phẩm trong kho
+                            orderManager.truSoLuongSanPham(masp, soluong);
                         }
 
                         Toast.makeText(this, "Đặt hàng thành công!", Toast.LENGTH_SHORT).show();

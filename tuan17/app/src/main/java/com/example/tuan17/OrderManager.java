@@ -47,4 +47,21 @@ public class OrderManager {
         db.close();
         return id;
     }
+
+    // Hàm cập nhật số lượng tồn kho sản phẩm
+    public void truSoLuongSanPham(String masp, int soluongMua) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        // Lấy số lượng hiện tại
+        Cursor cursor = db.rawQuery("SELECT soluongkho FROM sanpham WHERE masp = ?", new String[]{masp});
+        if (cursor.moveToFirst()) {
+            int soluongHienTai = cursor.getInt(0);
+            int soluongMoi = soluongHienTai - soluongMua;
+            if (soluongMoi < 0) soluongMoi = 0;
+            ContentValues values = new ContentValues();
+            values.put("soluongkho", soluongMoi);
+            db.update("sanpham", values, "masp = ?", new String[]{masp});
+        }
+        cursor.close();
+        db.close();
+    }
 }

@@ -47,6 +47,7 @@ public class DangKiTaiKhoan_Activity extends AppCompatActivity {
         });
         ArrayList<String> ar = new ArrayList<>();
         ar.add("user");
+        ar.add("admin"); // Thêm dòng này để có thể chọn admin
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getApplicationContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, ar);
         spinner.setAdapter(arrayAdapter);
@@ -61,6 +62,17 @@ public class DangKiTaiKhoan_Activity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
+
+        EditText diachi = findViewById(R.id.diachi); // Thêm EditText địa chỉ
+        EditText sdt = findViewById(R.id.sdt); // Thêm EditText số điện thoại
+        Spinner gioitinh = findViewById(R.id.gioitinh); // Thêm Spinner giới tính
+        ArrayList<String> arGioiTinh = new ArrayList<>();
+        arGioiTinh.add("Nam");
+        arGioiTinh.add("Nữ");
+        arGioiTinh.add("Khác");
+        ArrayAdapter<String> adapterGioiTinh = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arGioiTinh);
+        adapterGioiTinh.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        gioitinh.setAdapter(adapterGioiTinh);
 
 
         mangTK = new ArrayList<>();
@@ -77,10 +89,13 @@ public class DangKiTaiKhoan_Activity extends AppCompatActivity {
                 String username = tendn.getText().toString().trim();
                 String password = matkhau.getText().toString().trim();
                 String nhaplaimk = nhaplaimatkhau.getText().toString().trim();
+                String diachiStr = diachi.getText().toString().trim();
+                String gioitinhStr = gioitinh.getSelectedItem().toString();
+                String sdtStr = sdt.getText().toString().trim();
 
                 // Kiểm tra xem tên đăng nhập và mật khẩu có rỗng không
-                if (username.isEmpty() || password.isEmpty() || nhaplaimk.isEmpty()) {
-                    Toast.makeText(DangKiTaiKhoan_Activity.this, "Tên đăng nhập và mật khẩu không được để trống!", Toast.LENGTH_SHORT).show();
+                if (username.isEmpty() || password.isEmpty() || nhaplaimk.isEmpty() || diachiStr.isEmpty() || gioitinhStr.isEmpty() || sdtStr.isEmpty()) {
+                    Toast.makeText(DangKiTaiKhoan_Activity.this, "Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -98,7 +113,7 @@ public class DangKiTaiKhoan_Activity extends AppCompatActivity {
                 }
 
                 // Thêm tài khoản vào cơ sở dữ liệu
-                database.QueryData("INSERT INTO taikhoan VALUES('" + username + "', '" + password + "', '" + spn + "')");
+                database.QueryData("INSERT INTO taikhoan VALUES('" + username + "', '" + password + "', '" + spn + "', '" + diachiStr + "', '" + gioitinhStr + "', '" + sdtStr + "')");
                 Toast.makeText(DangKiTaiKhoan_Activity.this, "Đăng kí tài khoản thành công", Toast.LENGTH_LONG).show();
                 // Chuyển đến Activity thứ hai
                 Intent intent = new Intent(getApplicationContext(), Login_Activity.class);

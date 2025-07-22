@@ -81,13 +81,59 @@
                 android:textColorHighlight="@color/cardview_dark_background"
                 android:layout_marginTop="10dp"/>
 
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/sdt"
+                android:background="@drawable/edittext"
+                android:drawablePadding="8dp"
+                android:hint="Số điện thoại"
+                android:textColorHint="#aaa"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/diachi"
+                android:background="@drawable/edittext"
+                android:drawablePadding="8dp"
+                android:hint="Địa chỉ"
+                android:textColorHint="#aaa"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Giới tính"
+                android:textSize="16sp"
+                android:textColor="#000"
+                android:layout_marginTop="10dp"/>
+
+            <Spinner
+                android:id="@+id/gioitinh"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/edittext"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chọn quyền đăng ký"
+                android:textSize="16sp"
+                android:textColor="#000"
+                android:layout_marginTop="10dp"/>
+
             <Spinner
                 android:id="@+id/quyen"
-                android:layout_marginLeft="1dp"
-                android:layout_marginTop="0dp"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginBottom="0dp" />
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/edittext"/>
 
             <Button
                 android:layout_width="match_parent"

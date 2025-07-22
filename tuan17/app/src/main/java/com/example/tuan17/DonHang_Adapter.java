@@ -5,6 +5,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.widget.ImageView;
 
 import java.util.List;
 public class DonHang_Adapter extends ArrayAdapter<Order> {
@@ -26,6 +29,7 @@ public class DonHang_Adapter extends ArrayAdapter<Order> {
             TextView txtSdt = convertView.findViewById(R.id.txtSdt);
             TextView txtTongThanhToan = convertView.findViewById(R.id.txtTongThanhToan);
             TextView txtNgayDatHang = convertView.findViewById(R.id.txtNgayDatHang);
+            ImageView imgsp = convertView.findViewById(R.id.imgsp_donhang);
 
         txtTenKh.setText(order.getTenKh());
             txtDiaChi.setText(order.getDiaChi());
@@ -33,6 +37,19 @@ public class DonHang_Adapter extends ArrayAdapter<Order> {
             txtTongThanhToan.setText(String.valueOf(order.getTongTien()));
             txtNgayDatHang.setText(order.getNgayDatHang());
         txtMadh.setText(String.valueOf(order.getId()));
+
+        // Hiển thị hình ảnh sản phẩm đầu tiên trong đơn hàng (nếu có)
+        if (order.getChiTietList() != null && !order.getChiTietList().isEmpty()) {
+            byte[] anh = order.getChiTietList().get(0).getAnh();
+            if (anh != null && anh.length > 0) {
+                Bitmap bitmap = BitmapFactory.decodeByteArray(anh, 0, anh.length);
+                imgsp.setImageBitmap(bitmap);
+            } else {
+                imgsp.setImageResource(R.drawable.vest); // Ảnh mặc định
+            }
+        } else {
+            imgsp.setImageResource(R.drawable.vest); // Ảnh mặc định
+        }
             return convertView;
         }
 }

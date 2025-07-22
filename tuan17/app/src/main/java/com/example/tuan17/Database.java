@@ -87,7 +87,10 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS taikhoan (" +
                 "tendn TEXT PRIMARY KEY, " +
                 "matkhau TEXT, " +
-                "quyen TEXT)");
+                "quyen TEXT, " +
+                "diachi TEXT, " +
+                "gioitinh TEXT, " +
+                "sdt TEXT)");
     }
 
     public List<Order> getDonHangByTenKh(String tenKh) {
@@ -98,14 +101,16 @@ public class Database extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-               int id = cursor.getInt(0); // id_dathang
+                int id = cursor.getInt(0); // id_dathang
                 String diaChi = cursor.getString(2); // diachi
                 String sdt = cursor.getString(3); // sdt
                 float tongThanhToan = cursor.getFloat(4); // tongthanhtoan
                 String ngayDatHang = cursor.getString(5); // ngaydathang
 
-                // Tạo đối tượng Order và thêm vào danh sách
-                orders.add(new Order(id, tenKh, diaChi, sdt, tongThanhToan, ngayDatHang));
+                Order order = new Order(id, tenKh, diaChi, sdt, tongThanhToan, ngayDatHang);
+                // Nạp chi tiết sản phẩm cho đơn hàng
+                order.setChiTietList(getChiTietByOrderId(id, db));
+                orders.add(order);
             } while (cursor.moveToNext());
         }
 
@@ -133,8 +138,10 @@ public class Database extends SQLiteOpenHelper {
                     float tongThanhToan = cursor.getFloat(4); // tongthanhtoan
                     String ngayDatHang = cursor.getString(5); // ngaydathang
 
-                    // Tạo đối tượng Order và thêm vào danh sách
-                    orders.add(new Order(id, tenKh, diaChi, sdt, tongThanhToan, ngayDatHang));
+                    Order order = new Order(id, tenKh, diaChi, sdt, tongThanhToan, ngayDatHang);
+                    // Nạp chi tiết sản phẩm cho đơn hàng
+                    order.setChiTietList(getChiTietByOrderId(id, db));
+                    orders.add(order);
                 } while (cursor.moveToNext());
             }
         } catch (Exception e) {
@@ -149,4 +156,22 @@ public class Database extends SQLiteOpenHelper {
         return orders;
     }
 
+    // Hàm lấy chi tiết sản phẩm cho 1 đơn hàng (bao gồm ảnh)
+    public List<ChiTietDonHang> getChiTietByOrderId(int orderId, SQLiteDatabase db) {
+        List<ChiTietDonHang> chiTietList = new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT id_chitiet, id_dathang, masp, soluong, dongia, anh FROM Chitietdonhang WHERE id_dathang = ?", new String[]{String.valueOf(orderId)});
+        if (cursor.moveToFirst()) {
+            do {
+                int id_chitiet = cursor.getInt(0);
+                int id_dathang = cursor.getInt(1);
+                int masp = cursor.getInt(2);
+                int soluong = cursor.getInt(3);
+                float dongia = cursor.getFloat(4);
+                byte[] anh = cursor.getBlob(5);
+                chiTietList.add(new ChiTietDonHang(id_chitiet, id_dathang, masp, soluong, dongia, anh));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return chiTietList;
+    }
 }
