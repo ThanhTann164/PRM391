@@ -87,27 +87,6 @@
             android:name=".Login_Activity"
             android:exported="true" />
         <activity
-            android:name=".ThanhToan_Activity"
-            android:exported="true" />
-        
-        <activity
-            android:name=".DemoVNPayActivity"
-            android:exported="true" />
-        
-        <!-- Activity để trigger kết quả thanh toán từ app mobile banking
-        khi mà lại activity này thì bạn cần kiểm tra trạng thái thanh toán của đơn hàng -->
-        <activity
-            android:name=".ResultActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:scheme="your_scheme_app" />
-            </intent-filter>
-        </activity>
-        
-        <activity
 
             android:name=".MainActivity"
             android:exported="true">

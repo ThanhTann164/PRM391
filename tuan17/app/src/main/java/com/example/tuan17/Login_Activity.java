@@ -33,7 +33,6 @@ public class Login_Activity extends AppCompatActivity {
         EditText mk = findViewById(R.id.mk);
         TextView dangki = findViewById(R.id.dangki);
         TextView qmk = findViewById(R.id.qmk);
-        TextView demoVNPay = findViewById(R.id.demoVNPay);
         qmk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,12 +45,6 @@ public class Login_Activity extends AppCompatActivity {
         // Chuyển đến activity đăng ký tài khoản
         dangki.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), DangKiTaiKhoan_Activity.class);
-            startActivity(intent);
-        });
-        
-        // Chuyển đến demo VNPay
-        demoVNPay.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), DemoVNPayActivity.class);
             startActivity(intent);
         });
 
