@@ -1,22 +1,37 @@
 package com.example.tuan17;
 
 import androidx.appcompat.app.AppCompatActivity;
-import android.app.AlertDialog;
-import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class TrangCaNhan_nguoidung_Activity extends AppCompatActivity {
-    String tendn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = new Intent(this, ProfileActivity.class);
-        startActivity(intent);
-        finish();
+        setContentView(R.layout.activity_profile);
+
+        TextView tvUsername = findViewById(R.id.tv_profile_username);
+        TextView tvDiaChi = findViewById(R.id.tv_profile_diachi);
+        TextView tvGioiTinh = findViewById(R.id.tv_profile_gioitinh);
+        TextView tvSDT = findViewById(R.id.tv_profile_sdt);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        String tendn = sharedPreferences.getString("tendn", null);
+        if (tendn != null) {
+            Database database = new Database(this, "banhang.db", null, 1);
+            Cursor cursor = database.GetData("SELECT diachi, gioitinh, sdt FROM taikhoan WHERE tendn = '" + tendn + "'");
+            tvUsername.setText(tendn);
+            if (cursor.moveToFirst()) {
+                String diachi = cursor.getString(0);
+                String gioitinh = cursor.getString(1);
+                String sdt = cursor.getString(2);
+                tvDiaChi.setText(diachi);
+                tvGioiTinh.setText(gioitinh);
+                tvSDT.setText(sdt);
+            }
+            cursor.close();
+        }
     }
 }

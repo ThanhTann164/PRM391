@@ -19,14 +19,16 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="60dp">
+
             <ImageView
 
+                android:id="@+id/logo"
+                android:layout_width="50dp"
+                android:layout_height="60dp"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:id="@+id/logo"
                 android:src="@drawable/logo1"
-                android:layout_width="50dp"
-                android:layout_height="60dp" />
+                card_view:srcCompat="@drawable/logohome" />
 
             <TextView
                 android:layout_width="80dp"
