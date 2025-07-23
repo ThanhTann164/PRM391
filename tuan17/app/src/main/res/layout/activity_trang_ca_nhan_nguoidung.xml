@@ -124,79 +124,83 @@
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="#00B6FF"/>
+
                 <TextView
                     android:id="@+id/tv_sdt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textSize="18sp"
-                    android:textColor="#333333"/>
+                    android:textColor="#333333"
+                    android:textSize="18sp" />
             </LinearLayout>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:id="@+id/qd"
-                android:background="#DADADA"
-                android:textSize="18dp"
-                android:text="Quy định sử dụng"
-                android:drawablePadding="8dp"
-                android:hint="Họ và Tên"
-                android:textColorHint="#aaa"
-                android:padding="8dp"
-                android:layout_marginBottom="1dp"
-                android:drawableRight="@drawable/muitenphai"
-                android:textColor="@color/black"
-                android:textColorHighlight="@color/cardview_dark_background"
-                android:layout_marginTop="1dp"/>
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:id="@+id/cs"
-                android:background="#DADADA"
-                android:textSize="18dp"
-                android:text="Chính sách và bảo mật"
-                android:drawablePadding="8dp"
-                android:hint="Họ và Tên"
-
-                android:padding="8dp"
-                android:layout_marginBottom="1dp"
-                android:drawableRight="@drawable/muitenphai"
-                android:textColor="@color/black"
-                android:textColorHighlight="@color/cardview_dark_background"
-                android:layout_marginTop="1dp"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:id="@+id/dk"
-                android:background="#DADADA"
-                android:textSize="18dp"
-                android:text="Điều khoản và dịch vụ"
-                android:drawablePadding="8dp"
-                android:hint="Họ và Tên"
-
-                android:padding="8dp"
-                android:layout_marginBottom="1dp"
-                android:drawableRight="@drawable/muitenphai"
-                android:textColor="@color/black"
-                android:textColorHighlight="@color/cardview_dark_background"
-                android:layout_marginTop="1dp"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
                 android:id="@+id/td"
-                android:background="#DADADA"
-                android:textSize="18dp"
-                android:text="Tổng đài CSKH 19002325"
-                android:drawablePadding="8dp"
-
-
-                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="1dp"
                 android:layout_marginBottom="202dp"
+                android:background="#DADADA"
                 android:drawableRight="@drawable/muitenphai"
+
+
+                android:drawablePadding="8dp"
+                android:padding="8dp"
+                android:text="Tổng đài CSKH 19002325"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/cardview_dark_background"
-                android:layout_marginTop="1dp"/>
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/cs"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:background="#DADADA"
+                android:drawableRight="@drawable/muitenphai"
+                android:drawablePadding="8dp"
+
+                android:hint="Họ và Tên"
+                android:padding="8dp"
+                android:text="Chính sách và bảo mật"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/dk"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:background="#DADADA"
+                android:drawableRight="@drawable/muitenphai"
+                android:drawablePadding="8dp"
+
+                android:hint="Họ và Tên"
+                android:padding="8dp"
+                android:text="Điều khoản và dịch vụ"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/qd"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:background="#DADADA"
+                android:drawableRight="@drawable/muitenphai"
+                android:drawablePadding="8dp"
+                android:hint="Họ và Tên"
+                android:padding="8dp"
+                android:text="Quy định sử dụng"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:textColorHint="#aaa"
+                android:textSize="18dp" />
 
             <Button
                 android:textColor="#000000"

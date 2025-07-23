@@ -205,13 +205,17 @@ public class GioHang_Activity extends AppCompatActivity {
                             orderManager.truSoLuongSanPham(masp, soluong);
                         }
 
-                        Toast.makeText(this, "Đặt hàng thành công!", Toast.LENGTH_SHORT).show();
-                        gioHangManager.clearGioHang(); // Xóa giỏ hàng
-                        txtTongTien.setText("0"); // Đặt tổng tiền về 0
-
-                        adapter.notifyDataSetChanged(); // Cập nhật lại giao diện
-                        Intent a = new Intent(GioHang_Activity.this, TrangchuNgdung_Activity.class);
-                        startActivity(a);
+                        // Chuyển đến màn hình thanh toán
+                        Intent paymentIntent = new Intent(GioHang_Activity.this, ThanhToan_Activity.class);
+                        paymentIntent.putExtra("orderId", String.valueOf(orderId));
+                        paymentIntent.putExtra("totalAmount", String.valueOf((long) tongThanhToan));
+                        paymentIntent.putExtra("orderInfo", "Thanh toan don hang " + orderId);
+                        startActivity(paymentIntent);
+                        
+                        // Xóa giỏ hàng sau khi chuyển đến thanh toán
+                        gioHangManager.clearGioHang();
+                        txtTongTien.setText("0");
+                        adapter.notifyDataSetChanged();
                     } else {
                         Toast.makeText(this, "Đặt hàng thất bại!", Toast.LENGTH_SHORT).show();
                     }

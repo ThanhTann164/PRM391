@@ -100,6 +100,18 @@
         android:textAlignment="center"
         android:id="@+id/dangki"
         android:textColor="#000000"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="Demo VNPay Integration"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:id="@+id/demoVNPay"
+        android:textColor="#00A651"
         android:layout_marginBottom="20dp"/>
 
 </LinearLayout>
